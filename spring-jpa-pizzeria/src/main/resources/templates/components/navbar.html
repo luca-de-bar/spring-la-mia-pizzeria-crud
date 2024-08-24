@@ -2,54 +2,67 @@
 <html xmlns:th="http://www.thymeleaf.org/" lang="en">
 <head>
     <meta charset="UTF-8" th:insert="utilities/bootstrapCSS :: bootstrapCSS">
-    <title></title>
+    <title>Blue Pizza - Navbar</title>
 </head>
 <body>
-<!--NAVBAR-->
 <nav th:fragment="navbar" class="navbar bg-sky-600 fixed-top">
-    <div class="container-fluid">
-        <a class="navbar-brand flex flex-row justify-between items-center gap-4" href="#">
-            <img src="navbar-logo.svg" class="w-[2.8rem]">
+    <div class="container-fluid flex justify-between items-center">
+        <!-- Logo a sinistra -->
+        <a class="navbar-brand flex items-center gap-4" href="#">
+            <img src="navbar-logo.svg" class="w-[2.8rem]" alt="Logo">
             <p class="text-slate-100 font-semibold">Blue Pizza</p>
         </a>
-        <button class="navbar-toggler border-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+
+        <!-- DESKTOP MENU -->
+        <div class="hidden lg:flex flex-grow justify-center space-x-12 text-xl">
+                <a href="#" class="text-white hover:text-2xl transition-all">Menu</a>
+                <a href="#" class="text-white hover:text-slate-950 flex flex-row-reverse gap-1 justify-beetwen items-center hover:text-2xl transition-all ">
+                    Ordina
+                    <img src="/oven-mitts.svg">
+                </a>
+                <a href="#" class="text-white hover:text-2xl transition-all">Dove Siamo</a>
+                <a href="#" class="text-white hover:text-2xl transition-all">Contattaci</a>
+        </div>
+
+        <!-- Menu Toggle per mobile (nascondi su desktop) -->
+        <button class="navbar-toggler border-none lg:hidden" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header">
-                <div class="flex flex-row justify-between items-center gap-3">
-                    <img src="offcanvas-logo.svg" class="w-[2.8rem]">
-                    <p class="text-slate-800 font-semibold text-2xl">Blue Pizza</p>
-                </div>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+            <div class="flex flex-row justify-between items-center gap-3">
+                <img src="/navbar-logo.svg" class="w-[2.8rem]" alt="Offcanvas Logo">
+                <p class="text-slate-800 font-semibold text-2xl">Blue Pizza</p>
             </div>
-            <div class="offcanvas-body bg-sky-300">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item text-center font-semibold">
-                        <a class="nav-link rounded-md text-slate-900 hover:bg-blue-600 hover:text-slate-50" aria-current="page" href="#">Menu</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item text-center font-semibold">
-                        <a class="nav-link rounded-md text-slate-900 hover:bg-blue-600 hover:text-slate-50" aria-current="page" href="#">Ordina</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item text-center font-semibold">
-                        <a class="nav-link rounded-md text-slate-900 hover:bg-blue-600 hover:text-slate-50" aria-current="page" href="#">Dove siamo</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item text-center font-semibold">
-                        <a class="nav-link rounded-md text-slate-900 hover:bg-blue-600 hover:text-slate-50" aria-current="page" href="#">Contattaci</a>
-                    </li>
-                </ul>
-            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body bg-sky-300">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item text-center font-semibold">
+                    <a class="nav-link rounded-md text-slate-900 hover:bg-blue-600 hover:text-slate-50" aria-current="page" href="#">Menu</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item text-center font-semibold">
+                    <a class="nav-link rounded-md text-slate-900 hover:bg-white hover:text-slate-950 hover:text-lg" aria-current="page" href="#">Ordina</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item text-center font-semibold">
+                    <a class="nav-link rounded-md text-slate-900 hover:bg-blue-600 hover:text-slate-50" aria-current="page" href="#">Dove siamo</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item text-center font-semibold">
+                    <a class="nav-link rounded-md text-slate-900 hover:bg-blue-600 hover:text-slate-50" aria-current="page" href="#">Contattaci</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
 
-    <script th:replace="utilities/bootstrapJS :: bootstrapJS"></script>
-    <script th:replace="utilities/tailwindCSS :: tailwindCSS"></script>
+<script th:replace="utilities/tailwindCSS :: tailwindCSS"></script>
 </body>
 </html>

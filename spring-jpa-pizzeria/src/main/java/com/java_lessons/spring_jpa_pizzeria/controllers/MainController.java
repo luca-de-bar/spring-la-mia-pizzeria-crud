@@ -25,4 +25,10 @@ public class MainController {
         model.addAttribute("menu",result);
         return "home";
     }
+
+    @GetMapping("/ordina")
+    public String menu (Model model){
+
+        return "ordina";
+    }
 }
