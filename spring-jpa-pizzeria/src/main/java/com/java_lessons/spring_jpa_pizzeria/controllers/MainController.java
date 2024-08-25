@@ -16,6 +16,7 @@ public class MainController {
     @Autowired
     private MenuRepository menuRepository;
 
+    //HOME
     @GetMapping("/")
     public String home (Model model){
         //Prendo i dati da consegnare al modello
@@ -24,11 +25,5 @@ public class MainController {
         //Inserisco dati nel modello
         model.addAttribute("menu",result);
         return "home";
-    }
-
-    @GetMapping("/ordina")
-    public String menu (Model model){
-
-        return "ordina";
     }
 }
