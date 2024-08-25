@@ -5,59 +5,56 @@
     <title>Blue Pizza - Navbar</title>
 </head>
 <body>
-<nav th:fragment="navbar" class="navbar bg-sky-600 fixed-top">
-    <div class="container-fluid flex justify-between items-center">
-        <!-- Logo a sinistra -->
-        <a class="navbar-brand flex items-center gap-4" href="#">
+<nav th:fragment="navbar" class="navbar bg-sky-600 fixed-top flex flex-row justify-between items center h-[5rem]">
+    <!-- Logo a sinistra in un div separato -->
+    <div class="flex items-center gap-4">
+        <a class="navbar-brand flex flex-row justify-between items-center gap-3 ml-3" href="#">
             <img src="navbar-logo.svg" class="w-[2.8rem]" alt="Logo">
             <p class="text-slate-100 font-semibold">Blue Pizza</p>
         </a>
+    </div>
 
-        <!-- DESKTOP MENU -->
-        <div class="hidden lg:flex flex-grow justify-center space-x-12 text-xl">
-                <a href="#" class="text-white hover:text-2xl transition-all">Menu</a>
-                <a href="#" class="text-white hover:text-slate-950 flex flex-row-reverse gap-1 justify-beetwen items-center hover:text-2xl transition-all ">
-                    Ordina
-                    <img src="/oven-mitts.svg">
-                </a>
-                <a href="#" class="text-white hover:text-2xl transition-all">Dove Siamo</a>
-                <a href="#" class="text-white hover:text-2xl transition-all">Contattaci</a>
-        </div>
+    <!-- DESKTOP MENU in un div separato -->
+    <div class="hidden lg:flex justify-center flex-1 items-center mr-[10rem]">
+        <ul class="flex flex-row justify-center items-center gap-5 text-xl text-white font-semibold">
+            <a href="#">
+                <li class="hover:text-slate-950 hover:text-2xl transition-all">Menu</li>
+            </a>
+            <a href="#">
+                <li class="hover:text-slate-950 hover:text-2xl transition-all">Ordina</li>
+            </a>
+            <a href="#">
+                <li class="hover:text-slate-950 hover:text-2xl transition-all">Contattaci</li>
+            </a>
+            <a href="#">
+                <li class="hover:text-slate-950 hover:text-2xl transition-all">Dove siamo</li>
+            </a>
+        </ul>
+    </div>
 
-        <!-- Menu Toggle per mobile (nascondi su desktop) -->
-        <button class="navbar-toggler border-none lg:hidden" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+    <!-- Mobile Menu Toggle in un div separato -->
+    <div class="lg:hidden">
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
 
+    <!-- Offcanvas Menu -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
             <div class="flex flex-row justify-between items-center gap-3">
-                <img src="/navbar-logo.svg" class="w-[2.8rem]" alt="Offcanvas Logo">
+                <img src="navbar-logo.svg" class="w-[2.8rem]" alt="Offcanvas Logo">
                 <p class="text-slate-800 font-semibold text-2xl">Blue Pizza</p>
             </div>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body bg-sky-300">
+            <!-- Offcanvas menu links -->
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="nav-item text-center font-semibold">
-                    <a class="nav-link rounded-md text-slate-900 hover:bg-blue-600 hover:text-slate-50" aria-current="page" href="#">Menu</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="nav-item text-center font-semibold">
-                    <a class="nav-link rounded-md text-slate-900 hover:bg-white hover:text-slate-950 hover:text-lg" aria-current="page" href="#">Ordina</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="nav-item text-center font-semibold">
-                    <a class="nav-link rounded-md text-slate-900 hover:bg-blue-600 hover:text-slate-50" aria-current="page" href="#">Dove siamo</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="nav-item text-center font-semibold">
-                    <a class="nav-link rounded-md text-slate-900 hover:bg-blue-600 hover:text-slate-50" aria-current="page" href="#">Contattaci</a>
-                </li>
+                <li class="nav-item text-center font-semibold"><a class="nav-link rounded-md text-slate-900 hover:bg-blue-600 hover:text-slate-50" href="#">Menu</a></li>
+                <li class="nav-item text-center font-semibold"><a class="nav-link rounded-md text-slate-900 hover:bg-white hover:text-slate-950" href="#">Ordina</a></li>
+                <li class="nav-item text-center font-semibold"><a class="nav-link rounded-md text-slate-900 hover:bg-blue-600 hover:text-slate-50" href="#">Dove siamo</a></li>
+                <li class="nav-item text-center font-semibold"><a class="nav-link rounded-md text-slate-900 hover:bg-blue-600 hover:text-slate-50" href="#">Contattaci</a></li>
             </ul>
         </div>
     </div>

@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name= "menu")
-public class Menu {
+public class Pizza {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/" lang="en">
 <head>
-    <meta charset="UTF-8" th:insert="components/utilities/bootstrapCSS :: bootstrapCSS">
+    <meta charset="UTF-8" th:insert="~{components/utilities/bootstrapCSS :: bootstrapCSS}">
+    <link th:replace="~{components/utilities/favicon :: favicon}">
     <title>Blue Pizza Verona</title>
 </head>
 <body>
-    <div th:replace="components/navbar :: navbar" class="mt-10"></div>
-    <section th:replace="components/hero :: hero-section"></section>
+    <main>
+        <div th:replace="~{components/navbar :: navbar}" class="mt-10"></div>
+        <section th:replace="~{components/hero :: hero-section}"></section>
 
-
-    <script th:replace="components/utilities/bootstrapJS :: bootstrapJS"></script>
-    <script th:replace="components/utilities/tailwindCSS :: tailwindCSS"></script>
+        <!-- DISPLAY DATA FROM DATABASE -->
+        <section class="menu-pizza">
+            <div>
+                <ul>
+                   <li th:each="pizza : ${pizza}">
+                       <h2 th:text="${pizza.name}"></h2>
+                       <p th:text="${pizza.description}"></p>
+                       <p th:text="${pizza.price}"></p>
+                   </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <script th:replace="~{components/utilities/bootstrapJS :: bootstrapJS}"></script>
+    <script th:replace="~{components/utilities/tailwindCSS :: tailwindCSS}"></script>
 </body>
 </html>
