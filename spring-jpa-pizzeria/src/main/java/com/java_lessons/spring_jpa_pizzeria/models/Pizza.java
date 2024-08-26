@@ -57,6 +57,10 @@ public class Pizza {
         this.price = price;
     }
 
+    public String getFoto(){
+        return this.foto;
+    }
+
     public LocalDateTime getInsertedAt() {
         return insertedAt;
     }

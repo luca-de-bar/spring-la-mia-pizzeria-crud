@@ -11,14 +11,25 @@
         <section th:replace="~{components/hero :: hero-section}"></section>
 
         <!-- DISPLAY DATA FROM DATABASE -->
-        <section class="menu-pizza">
+        <section class="menu-pizza px-3 mt-5">
             <div>
-                <ul>
-                   <li th:each="pizza : ${pizza}">
-                       <h2 th:text="${pizza.name}"></h2>
-                       <p th:text="${pizza.description}"></p>
-                       <p th:text="${pizza.price}"></p>
-                   </li>
+                <h1 class="text-center font-bold text-3xl mb-[5.5rem]">Le nostre migliori pizze</h1>
+                <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <li th:each="pizza : ${pizza}" class="hover:scale-110 transition-all mb-8 md:mb-[5rem] lg:mb-[8rem]">
+                        <h2 th:text="${pizza.name}" class="text-2xl font-bold text-center my-2"></h2>
+                        <div class="flex flex-col justify-center items-center">
+                            <img th:src="${pizza.foto}" alt="foto-pizza" class="max-w-xs rounded-md">
+                            <p th:text="${pizza.description}" class="text-center text-lg mt-3 max-w-[15rem]"></p>
+                            <div class="flex flex-row justify-between items-center gap-3 mt-3">
+                                <p th:text="${pizza.price}" class="font-bold text-xl"></p>
+                                <a href="/ordina">
+                                    <button type="button" class="px-3 py-2 font-semibold rounded-md bg-sky-600 hover:bg-sky-800 text-white transition-all">
+                                        Ordina
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </section>
