@@ -6,15 +6,15 @@
 </head>
 <body>
 <nav th:fragment="navbar" class="navbar bg-sky-600 fixed-top flex flex-row justify-between items center h-[5rem]">
-    <!-- Logo a sinistra in un div separato -->
+    <!--LOGO -->
     <div class="flex items-center gap-4">
         <a class="navbar-brand flex flex-row justify-between items-center gap-3 ml-3" href="#">
-            <img src="navbar-logo.svg" class="w-[2.8rem]" alt="Logo">
+            <img src="/navbar-logo.svg" class="w-[2.8rem]" alt="Logo">
             <p class="text-slate-100 font-semibold">Blue Pizza</p>
         </a>
     </div>
 
-    <!-- DESKTOP MENU in un div separato -->
+    <!-- DESKTOP MENU -->
     <div class="hidden lg:flex justify-center flex-1 items-center mr-[10rem]">
         <ul class="flex flex-row justify-center items-center gap-5 text-xl text-white font-semibold">
             <a href="#">
@@ -32,24 +32,23 @@
         </ul>
     </div>
 
-    <!-- Mobile Menu Toggle in un div separato -->
+    <!-- MENU TOGGLE -->
     <div class="lg:hidden">
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
 
-    <!-- Offcanvas Menu -->
+    <!-- MOBILE MENU -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
             <div class="flex flex-row justify-between items-center gap-3">
-                <img src="navbar-logo.svg" class="w-[2.8rem]" alt="Offcanvas Logo">
+                <img src="/navbar-logo.svg" class="w-[2.8rem]" alt="Offcanvas Logo">
                 <p class="text-slate-800 font-semibold text-2xl">Blue Pizza</p>
             </div>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body bg-sky-300">
-            <!-- Offcanvas menu links -->
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item text-center font-semibold"><a class="nav-link rounded-md text-slate-900 hover:bg-blue-600 hover:text-slate-50" href="#">Menu</a></li>
                 <li class="nav-item text-center font-semibold"><a class="nav-link rounded-md text-slate-900 hover:bg-white hover:text-slate-950" href="#">Ordina</a></li>
