@@ -10,8 +10,8 @@
         <div th:replace="~{components/navbar :: navbar}" class="mt-10"></div>
         <section th:replace="~{components/hero :: hero-section}"></section>
 
-        <!-- DISPLAY DATA FROM DATABASE -->
-        <section class="menu-pizza px-3 mt-5">
+        <!-- IF LIST CONTAINS -->
+        <section class="menu-pizza px-3 mt-5" th:if="${pizza.size()>0}">
             <div>
                 <h1 class="text-center font-bold text-3xl mb-[5.5rem]">Le nostre migliori pizze</h1>
                 <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -32,6 +32,12 @@
                     </li>
                 </ul>
             </div>
+        </section>
+        <section class="px-3 mt-5 flex flex-col gap-5 justify-center items-center" th:unsless="${pizza.size()<0}">
+            <h1 class="text-center font-bold text-3xl max-w-[40rem]">Menu</h1>
+            <h1 class="text-center font-bold text-2xl max-w-[40rem]">
+                Spiacente, abbiamo finito le pizze.. il tempo di infornare e torneranno qui!
+            </h1>
         </section>
     </main>
     <script th:replace="~{components/utilities/bootstrapJS :: bootstrapJS}"></script>

@@ -9,7 +9,7 @@ public class Pizza {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -25,11 +25,15 @@ public class Pizza {
     @Transient
     private DecimalFormat formatter = new DecimalFormat("#,##0.00");
 
-    public int getId() {
+    public Pizza (){
+    }
+
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
