@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.List;
 
 @Controller
@@ -35,5 +37,20 @@ public class IndexController {
         model.addAttribute("pizza",pizzaRepository.findById(id).get());
 
         return "ordina";
+    }
+
+    // SEARCH PIZZA
+    @GetMapping("/search")
+    public String findByName(@RequestParam(value = "name", required = false) String name, Model model) {
+        List<Pizza> pizzas;
+
+        if (name == null || name.isEmpty()) {
+            pizzas = pizzaRepository.findAll();
+        } else {
+            pizzas = pizzaRepository.findByNameContainingIgnoreCase(name);
+        }
+
+        model.addAttribute("pizzas", pizzas);
+        return "index";
     }
 }
