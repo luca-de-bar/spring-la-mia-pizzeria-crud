@@ -9,6 +9,7 @@
     <!--LOGO -->
     <div class="flex items-center gap-4">
         <a class="navbar-brand flex flex-row justify-between items-center gap-3 ml-3" href="/">
+            <img th:src="@{/navbar-logo.svg}" class="w-[2.8rem]" alt="Offcanvas Logo">
             <p class="text-slate-100 font-semibold">Blue Pizza</p>
         </a>
     </div>
@@ -43,7 +44,7 @@
         <div class="offcanvas-header">
             <div class="">
                 <a href="/" class="flex flex-row justify-between items-center gap-3">
-                    <img src="/navbar-logo.svg" class="w-[2.8rem]" alt="Offcanvas Logo">
+                    <img th:src="@{/navbar-logo.svg}" class="w-[2.8rem]" alt="Offcanvas Logo">
                     <p class="text-slate-800 font-semibold text-2xl">Blue Pizza</p>
                 </a>
             </div>

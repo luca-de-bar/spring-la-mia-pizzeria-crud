@@ -49,7 +49,6 @@ public class IndexController {
         } else {
             pizzas = pizzaRepository.findByNameContainingIgnoreCase(name);
         }
-
         model.addAttribute("pizzas", pizzas);
         return "index";
     }
