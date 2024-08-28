@@ -8,7 +8,7 @@
 <nav th:fragment="navbar" class="navbar bg-sky-600 fixed-top flex flex-row justify-between items center h-[5rem]">
     <!--LOGO -->
     <div class="flex items-center gap-4">
-        <a class="navbar-brand flex flex-row justify-between items-center gap-3 ml-3" href="#">
+        <a class="navbar-brand flex flex-row justify-between items-center gap-3 ml-3" href="/">
             <img src="/navbar-logo.svg" class="w-[2.8rem]" alt="Logo">
             <p class="text-slate-100 font-semibold">Blue Pizza</p>
         </a>
@@ -42,9 +42,11 @@
     <!-- MOBILE MENU -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
-            <div class="flex flex-row justify-between items-center gap-3">
-                <img src="/navbar-logo.svg" class="w-[2.8rem]" alt="Offcanvas Logo">
-                <p class="text-slate-800 font-semibold text-2xl">Blue Pizza</p>
+            <div class="">
+                <a href="/" class="flex flex-row justify-between items-center gap-3">
+                    <img src="/navbar-logo.svg" class="w-[2.8rem]" alt="Offcanvas Logo">
+                    <p class="text-slate-800 font-semibold text-2xl">Blue Pizza</p>
+                </a>
             </div>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
