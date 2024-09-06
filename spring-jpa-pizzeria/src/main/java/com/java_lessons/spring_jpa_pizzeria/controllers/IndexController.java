@@ -5,10 +5,7 @@ import com.java_lessons.spring_jpa_pizzeria.models.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,7 +16,7 @@ public class IndexController {
     @Autowired
     private PizzaRepository pizzaRepository;
 
-    //INDEX
+    //Index
     @GetMapping
     public String index (Model model){
         //Prendo i dati da consegnare al modello
@@ -30,16 +27,32 @@ public class IndexController {
         return "index";
     }
 
-    //SHOW
+    //Show
     @GetMapping("/ordina/{id}")
     public String ordina(@PathVariable("id") Long id, Model model){
 
         model.addAttribute("pizza",pizzaRepository.findById(id).get());
 
-        return "ordina";
+        return "show";
     }
 
-    // SEARCH PIZZA
+
+    //Create
+    @GetMapping("/create")
+    public String create (Model model){
+        model.addAttribute("pizza", new Pizza());
+        return "create";
+    }
+
+    //Store
+    @PostMapping("/create")
+    public String store (@ModelAttribute Pizza pizza){
+        pizzaRepository.save(pizza);
+        return "redirect:/create";
+    }
+
+
+    // Search Form
     @GetMapping("/search")
     public String findByName(@RequestParam(value = "name", required = false) String name, Model model) {
         List<Pizza> pizzas;

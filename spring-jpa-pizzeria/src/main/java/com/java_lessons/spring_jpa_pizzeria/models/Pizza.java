@@ -2,9 +2,11 @@ package com.java_lessons.spring_jpa_pizzeria.models;
 import java.time.LocalDateTime;
 import java.text.DecimalFormat;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name= "menu")
+@Table(name= "pizze")
 public class Pizza {
 
     @Id
@@ -12,10 +14,15 @@ public class Pizza {
     private Long id;
 
     @Column(name = "name", nullable = false)
+    @NotEmpty
+    @NotNull
     private String name;
 
+    @NotEmpty
+    @NotNull
     private String description;
 
+    @NotNull
     private double price;
 
     private String foto;
@@ -53,8 +60,8 @@ public class Pizza {
         this.description = description;
     }
 
-    public String getPrice() {
-        return formatter.format(this.price) + '€';
+    public double getPrice() {
+        return this.price;
     }
 
     public void setPrice(double price) {
