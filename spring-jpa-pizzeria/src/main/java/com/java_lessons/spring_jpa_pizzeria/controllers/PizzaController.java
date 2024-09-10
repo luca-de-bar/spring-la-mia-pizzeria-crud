@@ -2,10 +2,13 @@ package com.java_lessons.spring_jpa_pizzeria.controllers;
 
 import com.java_lessons.spring_jpa_pizzeria.models.Pizza;
 import com.java_lessons.spring_jpa_pizzeria.models.PizzaRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -24,7 +27,7 @@ public class PizzaController {
 
         //Inserisco dati nel modello
         model.addAttribute("pizzas",pizzas);
-        return "index";
+        return "pizza/index";
     }
 
     //Show
@@ -33,24 +36,36 @@ public class PizzaController {
 
         model.addAttribute("pizza",pizzaRepository.findById(id).get());
 
-        return "show";
+        return "pizza/show";
     }
 
 
-    //Create
+    //Create + Store
     @GetMapping("/create")
     public String create (Model model){
         model.addAttribute("pizza", new Pizza());
-        return "create";
+        return "pizza/create";
     }
 
-    //Store
     @PostMapping("/create")
-    public String store (@ModelAttribute Pizza pizza){
-        pizzaRepository.save(pizza);
-        return "redirect:/create";
+    public String store (@Valid @ModelAttribute Pizza pizza,
+                         BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
+            return "pizza/create";
+        } else {
+            pizzaRepository.save(pizza);
+            return "redirect:/";
+        }
     }
 
+    //Edit + Update
+    @GetMapping("/edit{Id}")
+    public String edit(@PathVariable("id") Long id, Model model){
+
+        model.addAttribute("pizza",pizzaRepository.findById(id).get());
+        return "pizza/edit";
+    }
 
     // Search Form
     @GetMapping("/search")
@@ -63,6 +78,6 @@ public class PizzaController {
             pizzas = pizzaRepository.findByNameContainingIgnoreCase(name);
         }
         model.addAttribute("pizzas", pizzas);
-        return "index";
+        return "pizza/index";
     }
 }
