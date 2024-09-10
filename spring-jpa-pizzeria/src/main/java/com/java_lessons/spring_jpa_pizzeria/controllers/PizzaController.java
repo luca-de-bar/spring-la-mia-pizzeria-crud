@@ -11,7 +11,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/")
-public class IndexController {
+public class PizzaController {
 
     @Autowired
     private PizzaRepository pizzaRepository;
