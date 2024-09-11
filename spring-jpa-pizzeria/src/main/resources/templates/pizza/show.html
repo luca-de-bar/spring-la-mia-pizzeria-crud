@@ -67,7 +67,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Annulla</button>
-                    <form th:method="POST">
+                    <form th:method="POST" th:action="@{/delete/{id}(id=${pizza.id})}">
                         <button type="submit" class="btn btn-danger">Elimina</button>
                     </form>
                 </div>

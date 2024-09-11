@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -47,12 +48,13 @@ public class PizzaController {
     @PostMapping("/create")
     public String store (@Valid @ModelAttribute("pizza") Pizza formPizza,
                          BindingResult bindingResult,
-                         Model model){
+                         RedirectAttributes attributes){
 
         if(bindingResult.hasErrors()){
             return "pizza/create";
         }
         pizzaRepository.save(formPizza);
+        attributes.addFlashAttribute("alertMessage","La Pizza " + formPizza.getName() + " è stata creata");
         return "redirect:/";
     }
 
@@ -67,19 +69,21 @@ public class PizzaController {
     @PostMapping("/edit/{id}")
     public String update(@Valid @ModelAttribute("id") Pizza updatedPizzaForm,
                         BindingResult bindingResult,
-                        Model model){
+                        RedirectAttributes attributes){
 
         if (bindingResult.hasErrors()){
             return "pizza/edit";
         }
         pizzaRepository.save(updatedPizzaForm);
+        attributes.addFlashAttribute("alertMessage","La Pizza " + updatedPizzaForm.getName() + " è stata modificata");
         return "redirect:/";
     }
 
     //Delete
     @PostMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Long id, Model model){
+    public String delete(@PathVariable("id") Long id, RedirectAttributes attributes){
         pizzaRepository.deleteById(id);
-        return "redirect/";
+        attributes.addFlashAttribute("alertMessage","La Pizza con ID " + id + " è stata eliminata");
+        return "redirect:/";
     }
 }
