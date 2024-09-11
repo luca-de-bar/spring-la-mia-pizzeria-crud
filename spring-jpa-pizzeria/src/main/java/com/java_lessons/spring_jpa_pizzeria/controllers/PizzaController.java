@@ -32,8 +32,8 @@ public class PizzaController {
     //Show
     @GetMapping("/show/{id}")
     public String show (@PathVariable("id") Long id, Model model){
-        model.addAttribute("book",pizzaRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Book not found with id: " + id)));
+        model.addAttribute("pizza",pizzaRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Pizza not found with id: " + id)));
         return "pizza/show";
     }
 
@@ -59,7 +59,7 @@ public class PizzaController {
     //Edit + Update
     @GetMapping("/edit/{id}")
     public String edit (@PathVariable("id") Long id,Model model){
-        model.addAttribute("book",pizzaRepository.findById(id).get());
+        model.addAttribute("pizza",pizzaRepository.findById(id).get());
         return "pizza/edit";
     }
 
