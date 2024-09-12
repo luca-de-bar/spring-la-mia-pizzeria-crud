@@ -67,13 +67,11 @@ public class PizzaController {
 
 
     @PostMapping("/edit/{id}")
-    public String update(@Valid @ModelAttribute("id") Pizza updatedPizzaForm,
+    public String update(@Valid @ModelAttribute("pizza") Pizza updatedPizzaForm,
                         BindingResult bindingResult,
-                        RedirectAttributes attributes,
-                         Model model){
+                        RedirectAttributes attributes){
 
         if (bindingResult.hasErrors()){
-
             return "pizza/edit";
         }
         pizzaRepository.save(updatedPizzaForm);

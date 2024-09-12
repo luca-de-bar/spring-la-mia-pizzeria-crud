@@ -15,9 +15,7 @@ public class Pizza {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
     @NotEmpty
-    @NotNull
     private String name;
 
     @NotEmpty
@@ -52,7 +50,7 @@ public class Pizza {
         return name;
     }
 
-    public void setName(@NotEmpty @NotNull String name) {
+    public void setName(@NotNull @NotEmpty String name) {
         this.name = name;
     }
 
