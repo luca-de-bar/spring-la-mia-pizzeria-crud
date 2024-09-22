@@ -1,5 +1,7 @@
 package com.java_lessons.spring_jpa_pizzeria.models;
 import java.time.LocalDateTime;
+import java.util.List;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -32,6 +34,9 @@ public class Pizza {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    @OneToMany
+    private List<Discount> discounts;
 
     //Class Constructor
     public Pizza (){
