@@ -1,7 +1,7 @@
 package com.java_lessons.spring_jpa_pizzeria.controllers;
 
 import com.java_lessons.spring_jpa_pizzeria.models.Pizza;
-import com.java_lessons.spring_jpa_pizzeria.models.PizzaRepository;
+import com.java_lessons.spring_jpa_pizzeria.services.PizzaService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.List;
 public class PizzaController {
 
     @Autowired
-    private PizzaRepository pizzaRepository;
+    private PizzaService pizzaService;
 
 
     // SEARCH PIZZA
@@ -28,9 +28,9 @@ public class PizzaController {
         List<Pizza> pizzas;
 
         if (name == null || name.isEmpty()) {
-            pizzas = pizzaRepository.findAll();
+            pizzas = pizzaService.findAll();
         } else {
-            pizzas = pizzaRepository.findByNameContainingIgnoreCase(name);
+            pizzas = pizzaService.findPizzaByName(name);
         }
         model.addAttribute("pizzas", pizzas);
         return "pizza/index";
@@ -39,7 +39,7 @@ public class PizzaController {
     //Index
     @GetMapping
     public String index (Model model){
-        List<Pizza> pizzaList = pizzaRepository.findAll();
+        List<Pizza> pizzaList = pizzaService.findAll();
         model.addAttribute("pizzas",pizzaList);
         return "pizza/index";
     }
@@ -47,8 +47,7 @@ public class PizzaController {
     //Show
     @GetMapping("/show/{id}")
     public String show (@PathVariable("id") Long id, Model model){
-        model.addAttribute("pizza",pizzaRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Pizza not found with id: " + id)));
+        model.addAttribute("pizza",pizzaService.findById(id));
         return "pizza/show";
     }
 
@@ -67,7 +66,7 @@ public class PizzaController {
         if(bindingResult.hasErrors()){
             return "pizza/create";
         }
-        pizzaRepository.save(formPizza);
+        pizzaService.save(formPizza);
         attributes.addFlashAttribute("alertMessage","La Pizza " + formPizza.getName() + " è stata creata");
         return "redirect:/";
     }
@@ -75,7 +74,7 @@ public class PizzaController {
     //Edit + Update
     @GetMapping("/edit/{id}")
     public String edit (@PathVariable("id") Long id,Model model){
-        model.addAttribute("pizza",pizzaRepository.findById(id).get());
+        model.addAttribute("pizza",pizzaService.findById(id));
         return "pizza/edit";
     }
 
@@ -88,7 +87,7 @@ public class PizzaController {
         if (bindingResult.hasErrors()){
             return "pizza/edit";
         }
-        pizzaRepository.save(updatedPizzaForm);
+        pizzaService.save(updatedPizzaForm);
         attributes.addFlashAttribute("alertMessage","La Pizza " + updatedPizzaForm.getName() + " è stata modificata");
         return "redirect:/";
     }
@@ -96,7 +95,7 @@ public class PizzaController {
     //Delete
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id, RedirectAttributes attributes){
-        pizzaRepository.deleteById(id);
+        pizzaService.delete(id);
         attributes.addFlashAttribute("alertMessage","La Pizza con ID " + id + " è stata eliminata");
         return "redirect:/";
     }
