@@ -1,15 +1,19 @@
 package com.java_lessons.spring_jpa_pizzeria.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
 @Entity
-public class Discount {
+@Table(name = "offers")
+public class Offer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String title;
 
     private LocalDate startDate;
 
@@ -19,7 +23,10 @@ public class Discount {
     @JoinColumn(name = "pizza_id", nullable = false)
     private Pizza pizza;
 
-    public Discount(){
+    @NotNull
+    private Integer discount;
+
+    public Offer(){
 
     }
 
@@ -29,6 +36,14 @@ public class Discount {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public LocalDate getStartDate() {
@@ -53,5 +68,13 @@ public class Discount {
 
     public void setPizza(Pizza pizza) {
         this.pizza = pizza;
+    }
+
+    public @NotNull Integer getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(@NotNull Integer discount) {
+        this.discount = discount;
     }
 }

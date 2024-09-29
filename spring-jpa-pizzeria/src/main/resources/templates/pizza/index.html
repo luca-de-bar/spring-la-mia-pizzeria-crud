@@ -7,12 +7,20 @@
 </head>
 <body>
     <main>
+        <form th:action="@{/search}" method="get" class="mt-4 d-flex flex-row justify-content-center align-items-center">
+            <div class="input-group mb-3 w-25">
+                <input name="name" type="text" class="form-control" placeholder="Cerca la tua pizza" aria-label="Pizza name">
+                <button class="btn btn-primary" type="submit">
+                    Cerca
+                </button>
+            </div>
+        </form>
         <section class="table-section container my-5">
             <!--ALERT-->
             <th:block th:if="${alertMessage}">
                 <div th:replace="fragments/alertMessage :: alertMessage(${alertMessage})"></div>
             </th:block>
-            <div class="d-flex justify-content-end align-items-center my-5">
+            <div class="d-flex justify-content-end align-items-center mt-5">
                 <a th:href="@{/create}">
                     <button type="button" class="btn btn-success">
                         + Crea

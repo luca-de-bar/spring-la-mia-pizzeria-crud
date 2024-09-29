@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.CurrentTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
@@ -35,8 +34,8 @@ public class Pizza {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @OneToMany
-    private List<Discount> discounts;
+    @OneToMany(mappedBy = "pizza")
+    private List<Offer> offers;
 
     //Class Constructor
     public Pizza (){

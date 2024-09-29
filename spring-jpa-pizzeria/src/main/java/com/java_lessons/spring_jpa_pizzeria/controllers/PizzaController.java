@@ -22,6 +22,20 @@ public class PizzaController {
     private PizzaRepository pizzaRepository;
 
 
+    // SEARCH PIZZA
+    @GetMapping("/search")
+    public String findByName(@RequestParam(value = "name", required = false) String name, Model model) {
+        List<Pizza> pizzas;
+
+        if (name == null || name.isEmpty()) {
+            pizzas = pizzaRepository.findAll();
+        } else {
+            pizzas = pizzaRepository.findByNameContainingIgnoreCase(name);
+        }
+        model.addAttribute("pizzas", pizzas);
+        return "pizza/index";
+    }
+
     //Index
     @GetMapping
     public String index (Model model){
