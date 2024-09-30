@@ -1,8 +1,8 @@
 package com.java_lessons.spring_jpa_pizzeria.controllers;
 
+import com.java_lessons.spring_jpa_pizzeria.models.Offer;
 import com.java_lessons.spring_jpa_pizzeria.models.Pizza;
 import com.java_lessons.spring_jpa_pizzeria.services.PizzaService;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
@@ -98,5 +100,21 @@ public class PizzaController {
         pizzaService.delete(id);
         attributes.addFlashAttribute("alertMessage","La Pizza con ID " + id + " è stata eliminata");
         return "redirect:/";
+    }
+
+    //Create New Offer
+    @GetMapping("/{id}/offer")
+    public String offer(@PathVariable("id")Long id,Model model){
+
+        Pizza pizza = pizzaService.findById(id);
+
+        //Set offer start date to LocalDateNow()
+        Offer offer = new Offer();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedDate = LocalDate.now().format(formatter);
+        offer.setStartDate(formattedDate);
+
+        model.addAttribute("offer",new Offer());
+        return "/offers/create";
     }
 }

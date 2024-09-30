@@ -15,16 +15,13 @@ public class Offer {
 
     private String title;
 
-    private LocalDate startDate;
+    private String startDate;
 
     private LocalDate endDate;
 
     @ManyToOne
     @JoinColumn(name = "pizza_id", nullable = false)
     private Pizza pizza;
-
-    @NotNull
-    private Integer discount;
 
     public Offer(){
 
@@ -46,12 +43,12 @@ public class Offer {
         this.title = title;
     }
 
-    public LocalDate getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
+    public String setStartDate(String startDate) {
+       return this.startDate = startDate;
     }
 
     public LocalDate getEndDate() {
@@ -70,11 +67,4 @@ public class Offer {
         this.pizza = pizza;
     }
 
-    public @NotNull Integer getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(@NotNull Integer discount) {
-        this.discount = discount;
-    }
 }

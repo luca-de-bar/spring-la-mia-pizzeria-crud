@@ -34,7 +34,7 @@ public class Pizza {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "pizza")
+    @OneToMany(mappedBy = "pizza", cascade = CascadeType.REMOVE)
     private List<Offer> offers;
 
     //Class Constructor
