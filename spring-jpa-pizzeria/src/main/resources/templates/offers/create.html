@@ -8,7 +8,7 @@
 <body>
 <section class="container my-5 w-25">
     <form th:object="${offer}" th:method="POST" th:action="@{/offers/create}">
-        <input type="hidden" th:field="*{pizza}" id="book">
+        <input type="hidden" th:field="*{pizza.id}" id="book">
         <div class="mb-3">
             <label for="title" class="form-label">Nome offerta</label>
             <input type="text" class="form-control" id="title" th:field="*{title}" th:errorclass="is-invalid">

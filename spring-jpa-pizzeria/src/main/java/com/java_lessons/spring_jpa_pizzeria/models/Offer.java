@@ -1,6 +1,7 @@
 package com.java_lessons.spring_jpa_pizzeria.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
@@ -13,10 +14,14 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
+    @NotNull
     private String title;
 
+    @NotNull
     private String startDate;
 
+    @NotNull
     private LocalDate endDate;
 
     @ManyToOne

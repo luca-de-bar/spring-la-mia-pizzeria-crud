@@ -39,7 +39,7 @@ public class OfferController {
             return "/offers/create";
         }
         offerService.save(formOffer);
-        attributes.addFlashAttribute("alertMessage","L'offerta " + formOffer.getTitle() + " è stata salvata");
+        attributes.addFlashAttribute("successMessage","L'offerta " + formOffer.getTitle() + " è stata salvata");
         return "redirect:/";
     }
 }

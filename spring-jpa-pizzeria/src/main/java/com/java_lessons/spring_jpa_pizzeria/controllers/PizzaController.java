@@ -106,15 +106,16 @@ public class PizzaController {
     @GetMapping("/{id}/offer")
     public String offer(@PathVariable("id")Long id,Model model){
 
-        Pizza pizza = pizzaService.findById(id);
-
         //Set offer start date to LocalDateNow()
         Offer offer = new Offer();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String formattedDate = LocalDate.now().format(formatter);
         offer.setStartDate(formattedDate);
 
-        model.addAttribute("offer",new Offer());
+        //Pass Pizza to form
+        offer.setPizza(pizzaService.findById(id));
+
+        model.addAttribute("offer",offer);
         return "/offers/create";
     }
 }
