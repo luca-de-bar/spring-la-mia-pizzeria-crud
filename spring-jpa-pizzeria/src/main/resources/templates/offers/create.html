@@ -7,6 +7,9 @@
 </head>
 <body>
 <section class="container my-5 w-25">
+    <div class="d-flex flex-row justify-content-center align-items-center my-4">
+        <h1 class="fw-bold fs-2">Nuova offerta per [[${offer.pizza.name}]]</h1>
+    </div>
     <form th:object="${offer}" th:method="POST" th:action="@{/offers/create}">
         <input type="hidden" th:field="*{pizza.id}" id="book">
         <div class="mb-3">

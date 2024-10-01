@@ -69,7 +69,7 @@ public class PizzaController {
             return "pizza/create";
         }
         pizzaService.save(formPizza);
-        attributes.addFlashAttribute("alertMessage","La Pizza " + formPizza.getName() + " è stata creata");
+        attributes.addFlashAttribute("successMessage","La Pizza " + formPizza.getName() + " è stata creata");
         return "redirect:/";
     }
 
@@ -90,7 +90,7 @@ public class PizzaController {
             return "pizza/edit";
         }
         pizzaService.save(updatedPizzaForm);
-        attributes.addFlashAttribute("alertMessage","La Pizza " + updatedPizzaForm.getName() + " è stata modificata");
+        attributes.addFlashAttribute("successMessage","La Pizza " + updatedPizzaForm.getName() + " è stata modificata");
         return "redirect:/";
     }
 
