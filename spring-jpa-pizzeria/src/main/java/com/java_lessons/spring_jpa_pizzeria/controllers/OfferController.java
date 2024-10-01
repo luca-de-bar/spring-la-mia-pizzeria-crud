@@ -37,6 +37,29 @@ public class OfferController {
         }
         offerService.save(formOffer);
         attributes.addFlashAttribute("successMessage","L'offerta " + formOffer.getTitle() + " è stata salvata");
-        return "redirect:/";
+        return "redirect:/offers";
     }
+
+    //edit
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id")Long id, Model model){
+        model.addAttribute("offer",offerService.findById(id));
+        return "offers/edit";
+    }
+
+    //update
+    @PostMapping("/edit/{id}")
+    public String update(@Valid @ModelAttribute("offer") Offer updatedFormOffer,
+                         BindingResult bindingResult,
+                         RedirectAttributes attributes,
+                         Model model){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("offer",updatedFormOffer);
+            return "/offers/edit";
+        }
+        offerService.save(updatedFormOffer);
+        attributes.addFlashAttribute("successMessage","L'offerta " + updatedFormOffer.getTitle() + "è stata modificata con successo");
+        return "redirect:/offers";
+    }
+
 }

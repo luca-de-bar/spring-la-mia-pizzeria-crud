@@ -23,6 +23,7 @@
             <th:block th:if="${successMessage}">
                 <div th:replace="fragments/successMessage :: successMessage(${successMessage})"></div>
             </th:block>
+            <!-- END ALERT -->
             <div class="d-flex flex-row justify-content-end align-items-center gap-3 my-5">
                 <a th:href="@{/offers}">
                     <button type="button" class="btn btn-primary">

@@ -7,7 +7,25 @@
 </head>
 <body>
 <main>
+    <!--ALERT-->
+    <div class="container-fluid my-5">
+        <th:block th:if="${alertMessage}">
+            <div th:replace="fragments/alertMessage :: alertMessage(${alertMessage})"></div>
+        </th:block>
+        <th:block th:if="${successMessage}">
+            <div th:replace="fragments/successMessage :: successMessage(${successMessage})"></div>
+        </th:block>
+    </div>
+
+    <!-- END ALERT -->
     <section class="table-section container my-5">
+        <div class="d-flex flex-row justify-content-end align-items-center">
+            <a th:href="@{/}">
+                <button type="button" class="btn btn-danger">
+                    Indietro
+                </button>
+            </a>
+        </div>
         <!-- TABLE -->
         <table class="table text-center">
             <thead>
@@ -16,6 +34,7 @@
                 <th scope="col" class="w-25">Pizza</th>
                 <th scope="col" class="w-25">Inizio Offerta</th>
                 <th scope="col" class="w-25">Fine Offerta</th>
+                <th scope="col" class="w-25">Azioni</th>
             </tr>
             </thead>
             <tbody>
@@ -35,7 +54,7 @@
                                 </svg>
                             </button>
                         </a>
-                        <a th:href="@{/{id}/offers/edit(id=${offer.id})}">
+                        <a th:href="@{/offers/edit/{id}(id=${offer.id})}">
                             <button type="button" class="btn btn-warning">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"/>
@@ -52,6 +71,9 @@
             </tr>
             </tbody>
         </table>
+        <section th:unless="${offers.size() > 0}" class="d-flex flex-row justify-content-center align-items-center my-5">
+            <h1 class="fs-3 fw-bold">Non sono presenti offerte al momento.. torna più tardi!</h1>
+        </section>
     </section>
 
     <!-- MODAL -->
